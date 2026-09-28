@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fake News Detection</title>
+
+    <!-- Connect CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            Fake News Detection
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#how-it-works">How It Works</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HOME -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                Machine Learning Based System
+            </div>
+
+            <h1>
+                Fake News
+                <span>Detection System</span>
+            </h1>
+
+            <p>
+                Detect whether a news article is likely to be
+                fake or true using Natural Language Processing
+                and Machine Learning.
+            </p>
+
+            <a href="#detector" class="start-button">
+                Start Detection
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- DETECTOR -->
+    <section class="detector-section" id="detector">
+
+        <div class="detector-card">
+
+            <h2>
+                Analyze News Article
+            </h2>
+
+            <p class="section-description">
+                Enter a news article below and click Analyze News.
+            </p>
+
+            <label for="newsText">
+                Enter News Article
+            </label>
+
+            <textarea
+                id="newsText"
+                placeholder="Paste or type a news article here..."
+            ></textarea>
+
+            <button
+                id="analyzeButton"
+                onclick="analyzeNews()"
+            >
+                Analyze News
+            </button>
+
+
+            <!-- RESULT -->
+            <div
+                class="result-box"
+                id="resultBox"
+            >
+
+                <div
+                    class="result-icon"
+                    id="resultIcon"
+                >
+                    ?
+                </div>
+
+                <h3 id="resultTitle">
+                    Waiting for Analysis
+                </h3>
+
+                <p id="resultText">
+                    Enter a news article to get a prediction.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <div class="section-title">
+
+            <h2>
+                About the System
+            </h2>
+
+            <p>
+                This system uses Natural Language Processing
+                and Machine Learning techniques to analyze
+                news content.
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    01
+                </div>
+
+                <h3>
+                    Text Processing
+                </h3>
+
+                <p>
+                    The news article is cleaned and processed
+                    before machine learning prediction.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <h3>
+                    TF-IDF
+                </h3>
+
+                <p>
+                    TF-IDF converts the text into numerical
+                    features that can be processed by the model.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <h3>
+                    Machine Learning
+                </h3>
+
+                <p>
+                    Logistic Regression analyzes the processed
+                    text and predicts fake or true news.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section
+        class="how-it-works"
+        id="how-it-works"
+    >
+
+        <div class="section-title">
+
+            <h2>
+                How It Works
+            </h2>
+
+            <p>
+                The system follows three main steps.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>
+                    Enter News
+                </h3>
+
+                <p>
+                    Enter or paste a news article.
+                </p>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>
+                    Process Text
+                </h3>
+
+                <p>
+                    The system processes the news using NLP
+                    and TF-IDF.
+                </p>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>
+                    Predict
+                </h3>
+
+                <p>
+                    The machine learning model predicts
+                    fake or true news.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h3>
+            Fake News Detection
+        </h3>
+
+        <p>
+            Machine Learning Based Fake News Detection System
+        </p>
+
+        <p class="copyright">
+            © 2026 Fake News Detection Project
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        async function analyzeNews() {
+
+            // Get article text
+            const newsText =
+                document.getElementById("newsText").value.trim();
+
+
+            // Get HTML elements
+            const button =
+                document.getElementById("analyzeButton");
+
+            const resultBox =
+                document.getElementById("resultBox");
+
+            const resultIcon =
+                document.getElementById("resultIcon");
+
+            const resultTitle =
+                document.getElementById("resultTitle");
+
+            const resultText =
+                document.getElementById("resultText");
+
+
+            // Check empty article
+            if (newsText === "") {
+
+                resultBox.className =
+                    "result-box warning";
+
+                resultIcon.textContent =
+                    "!";
+
+                resultTitle.textContent =
+                    "Please Enter News";
+
+                resultText.textContent =
+                    "Please enter a news article before analyzing.";
+
+                return;
+            }
+
+
+            // Disable button
+            button.disabled = true;
+
+            button.textContent =
+                "Analyzing...";
+
+
+            // Show loading
+            resultBox.className =
+                "result-box";
+
+            resultIcon.textContent =
+                "...";
+
+            resultTitle.textContent =
+                "Analyzing News";
+
+            resultText.textContent =
+                "Please wait...";
+
+
+            try {
+
+                /*
+                 * SEND DATA TO FLASK
+                 *
+                 * IMPORTANT:
+                 * Flask expects:
+                 *
+                 * {
+                 *     "news": "article text"
+                 * }
+                 */
+
+                const response = await fetch(
+                    "/predict",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            news: newsText
+
+                        })
+                    }
+                );
+
+
+                /*
+                 * GET FLASK RESPONSE
+                 */
+
+                const data =
+                    await response.json();
+
+
+                /*
+                 * CHECK SERVER ERROR
+                 */
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Prediction failed."
+                    );
+
+                }
+
+
+                /*
+                 * GET RESULT
+                 *
+                 * Flask returns:
+                 *
+                 * data.result
+                 * data.confidence
+                 */
+
+                const prediction =
+                    data.result;
+
+                const confidence =
+                    data.confidence;
+
+
+                /*
+                 * SHOW FAKE NEWS
+                 */
+
+                if (
+                    prediction === "FAKE NEWS" ||
+                    prediction === "Fake News" ||
+                    prediction === "FAKE"
+                ) {
+
+                    resultBox.className =
+                        "result-box warning";
+
+                    resultIcon.textContent =
+                        "!";
+
+                }
+
+
+                /*
+                 * SHOW TRUE NEWS
+                 */
+
+                else {
+
+                    resultBox.className =
+                        "result-box";
+
+                    resultIcon.textContent =
+                        "✓";
+
+                }
+
+
+                /*
+                 * DISPLAY RESULT
+                 */
+
+                resultTitle.textContent =
+                    prediction;
+
+
+                /*
+                 * DISPLAY CONFIDENCE
+                 */
+
+                resultText.textContent =
+                    "Confidence: " +
+                    confidence +
+                    "%";
+
+            }
+
+
+            /*
+             * CONNECTION ERROR
+             */
+
+            catch (error) {
+
+                console.error(error);
+
+                resultBox.className =
+                    "result-box warning";
+
+                resultIcon.textContent =
+                    "!";
+
+                resultTitle.textContent =
+                    "Connection Error";
+
+                resultText.textContent =
+                    "Prediction failed. " +
+                    error.message;
+
+            }
+
+
+            /*
+             * ENABLE BUTTON AGAIN
+             */
+
+            finally {
+
+                button.disabled = false;
+
+                button.textContent =
+                    "Analyze News";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -35,19 +35,29 @@ VECTORIZER_FILE = os.path.join(
 # CHECK MODEL FILES
 # ============================================================
 
+# if not os.path.exists(MODEL_FILE):
+
+#     print("ERROR: Machine Learning model not found!")
+
+#     print(
+#         "Please run this command first:"
+#     )
+
+#     print(
+#         "python fake_news.py"
+#     )
+
+#     exit()
+
 if not os.path.exists(MODEL_FILE):
-
-    print("ERROR: Machine Learning model not found!")
-
-    print(
-        "Please run this command first:"
+    raise FileNotFoundError(
+        "fake_news_model.pkl not found in models folder."
     )
 
-    print(
-        "python fake_news.py"
+if not os.path.exists(VECTORIZER_FILE):
+    raise FileNotFoundError(
+        "tfidf_vectorizer.pkl not found in models folder."
     )
-
-    exit()
 
 
 if not os.path.exists(VECTORIZER_FILE):

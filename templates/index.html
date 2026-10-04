@@ -1,539 +1,1075 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Fake News Detection</title>
+    <title>Fake News Detection | AI-Powered News Verification</title>
 
-    <!-- Connect CSS -->
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <meta name="description"
+          content="AI-powered Fake News Detection System using NLP, TF-IDF and Logistic Regression.">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+<!-- =========================
+     NAVIGATION
+========================= -->
+<header class="navbar">
+    <div class="nav-container">
 
-        <div class="logo">
-            Fake News Detection
-        </div>
+        <a href="#home" class="logo">
+            <span class="logo-icon">✓</span>
+            <span>NewsVerify</span>
+        </a>
 
-        <div class="nav-links">
+        <nav class="nav-links">
             <a href="#home">Home</a>
-            <a href="#about">About</a>
+            <a href="#detect">Detect News</a>
             <a href="#how-it-works">How It Works</a>
-        </div>
+            <a href="#dataset">Dataset</a>
+            <a href="#about">About</a>
+        </nav>
 
-    </nav>
+        <a href="#detect" class="nav-button">
+            Check News
+        </a>
+
+    </div>
+</header>
 
 
-    <!-- HOME -->
-    <section class="hero" id="home">
+<!-- =========================
+     HERO SECTION
+========================= -->
+<section id="home" class="hero">
+
+    <div class="hero-container">
 
         <div class="hero-content">
 
-            <div class="badge">
-                Machine Learning Based System
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                AI-POWERED NEWS VERIFICATION
             </div>
 
             <h1>
-                Fake News
-                <span>Detection System</span>
+                Detect Fake News
+                <span>Before You Believe It.</span>
             </h1>
 
-            <p>
-                Detect whether a news article is likely to be
-                fake or true using Natural Language Processing
-                and Machine Learning.
+            <p class="hero-description">
+                An academic Fake News Detection System that uses
+                Natural Language Processing, TF-IDF feature extraction,
+                and Logistic Regression to classify news content.
             </p>
 
-            <a href="#detector" class="start-button">
-                Start Detection
-            </a>
+            <div class="hero-buttons">
+
+                <a href="#detect" class="primary-button">
+                    Start Detection
+                    <span>→</span>
+                </a>
+
+                <a href="#how-it-works" class="secondary-button">
+                    Explore System
+                </a>
+
+            </div>
+
+            <div class="hero-tech">
+                <span>Python</span>
+                <span>Flask</span>
+                <span>NLP</span>
+                <span>TF-IDF</span>
+                <span>Machine Learning</span>
+            </div>
 
         </div>
 
-    </section>
+
+        <!-- Hero visual -->
+        <div class="hero-visual">
+
+            <div class="verification-card">
+
+                <div class="verification-header">
+                    <div>
+                        <small>NEWS ANALYSIS</small>
+                        <h3>Verification System</h3>
+                    </div>
+
+                    <div class="status-indicator">
+                        <span></span>
+                        Ready
+                    </div>
+                </div>
+
+                <div class="analysis-lines">
+
+                    <div class="analysis-line">
+                        <span class="line-label">NLP Processing</span>
+                        <div class="line-track">
+                            <div class="line-progress progress-one"></div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-line">
+                        <span class="line-label">TF-IDF Analysis</span>
+                        <div class="line-track">
+                            <div class="line-progress progress-two"></div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-line">
+                        <span class="line-label">ML Classification</span>
+                        <div class="line-track">
+                            <div class="line-progress progress-three"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="verification-result">
+                    <span class="result-check">✓</span>
+
+                    <div>
+                        <small>MODEL STATUS</small>
+                        <strong>Ready for Analysis</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- DETECTOR -->
-    <section class="detector-section" id="detector">
+<!-- =========================
+     STATS
+========================= -->
+<section class="stats-section">
+
+    <div class="stats-container">
+
+        <div class="stat-item">
+            <strong>44,898</strong>
+            <span>News Records</span>
+        </div>
+
+        <div class="stat-divider"></div>
+
+        <div class="stat-item">
+            <strong>2</strong>
+            <span>News Classes</span>
+        </div>
+
+        <div class="stat-divider"></div>
+
+        <div class="stat-item">
+            <strong>TF-IDF</strong>
+            <span>Feature Extraction</span>
+        </div>
+
+        <div class="stat-divider"></div>
+
+        <div class="stat-item">
+            <strong>ML</strong>
+            <span>Classification</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DETECTION SECTION
+========================= -->
+<section id="detect" class="section detection-section">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            <span></span>
+            NEWS DETECTION
+        </div>
+
+        <h2>Analyze a News Article</h2>
+
+        <p>
+            Enter a news headline or article below and let the trained
+            machine learning model analyze its content.
+        </p>
+
+    </div>
+
+
+    <div class="detector-wrapper">
 
         <div class="detector-card">
 
-            <h2>
-                Analyze News Article
-            </h2>
+            <div class="detector-card-header">
 
-            <p class="section-description">
-                Enter a news article below and click Analyze News.
-            </p>
+                <div>
+                    <span class="card-number">01</span>
 
-            <label for="newsText">
-                Enter News Article
-            </label>
+                    <div>
+                        <h3>News Input</h3>
+                        <p>Paste the news content you want to analyze.</p>
+                    </div>
+                </div>
 
-            <textarea
-                id="newsText"
-                placeholder="Paste or type a news article here..."
-            ></textarea>
+                <span class="input-status">
+                    ● System Ready
+                </span>
 
-            <button
-                id="analyzeButton"
-                onclick="analyzeNews()"
-            >
-                Analyze News
-            </button>
+            </div>
 
 
-            <!-- RESULT -->
-            <div
-                class="result-box"
-                id="resultBox"
-            >
+            <div class="textarea-wrapper">
 
-                <div
-                    class="result-icon"
-                    id="resultIcon"
+                <textarea
+                    id="newsText"
+                    placeholder="Paste a news headline or article here..."
+                    aria-label="News content"
+                ></textarea>
+
+                <div class="textarea-footer">
+                    <span id="characterCount">0 characters</span>
+                    <span>Recommended: headline + article text</span>
+                </div>
+
+            </div>
+
+
+            <div class="detector-actions">
+
+                <button
+                    type="button"
+                    id="analyzeButton"
+                    class="analyze-button"
+                    onclick="analyzeNews()"
                 >
-                    ?
+                    <span class="button-icon">↗</span>
+                    <span id="analyzeButtonText">Analyze News</span>
+                </button>
+
+                <button
+                    type="button"
+                    id="clearButton"
+                    class="clear-button"
+                    onclick="clearAnalysis()"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 SCANNING STATE
+            ========================= -->
+            <div id="scanningBox" class="scanning-box">
+
+                <div class="scanner-visual">
+
+                    <div class="scanner-document">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                    <div class="scanner-line"></div>
+
                 </div>
 
-                <h3 id="resultTitle">
-                    Waiting for Analysis
-                </h3>
+                <div class="scanning-content">
 
-                <p id="resultText">
-                    Enter a news article to get a prediction.
-                </p>
+                    <span class="scanning-label">
+                        ANALYZING NEWS
+                    </span>
+
+                    <h4 id="scanningText">
+                        Processing article content
+                    </h4>
+
+                    <div class="scanning-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 RESULT
+            ========================= -->
+            <div id="resultBox" class="result-box">
+
+                <div class="result-header">
+
+                    <div class="result-icon" id="resultIcon">
+                        ✓
+                    </div>
+
+                    <div class="result-heading">
+
+                        <span>ANALYSIS COMPLETE</span>
+
+                        <h3 id="resultTitle">
+                            Result
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-message">
+                    <p id="resultText">
+                        Your news analysis result will appear here.
+                    </p>
+                </div>
+
+
+                <div class="confidence-section">
+
+                    <div class="confidence-header">
+                        <span>Model Confidence</span>
+                        <strong id="confidenceValue">0%</strong>
+                    </div>
+
+                    <div class="confidence-track">
+                        <div
+                            id="confidenceBar"
+                            class="confidence-bar"
+                        ></div>
+                    </div>
+
+                </div>
+
+                <div class="result-note">
+                    <span>ⓘ</span>
+                    This prediction represents the classification made by
+                    the trained machine learning model. It is not an
+                    absolute fact-checking service.
+                </div>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- ABOUT -->
-    <section class="about" id="about">
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+<section id="how-it-works" class="section process-section">
 
-        <div class="section-title">
+    <div class="section-heading">
 
-            <h2>
-                About the System
-            </h2>
-
-            <p>
-                This system uses Natural Language Processing
-                and Machine Learning techniques to analyze
-                news content.
-            </p>
-
+        <div class="section-label">
+            <span></span>
+            SYSTEM WORKFLOW
         </div>
 
-
-        <div class="features">
-
-            <div class="feature-card">
-
-                <div class="feature-number">
-                    01
-                </div>
-
-                <h3>
-                    Text Processing
-                </h3>
-
-                <p>
-                    The news article is cleaned and processed
-                    before machine learning prediction.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-number">
-                    02
-                </div>
-
-                <h3>
-                    TF-IDF
-                </h3>
-
-                <p>
-                    TF-IDF converts the text into numerical
-                    features that can be processed by the model.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-number">
-                    03
-                </div>
-
-                <h3>
-                    Machine Learning
-                </h3>
-
-                <p>
-                    Logistic Regression analyzes the processed
-                    text and predicts fake or true news.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- HOW IT WORKS -->
-    <section
-        class="how-it-works"
-        id="how-it-works"
-    >
-
-        <div class="section-title">
-
-            <h2>
-                How It Works
-            </h2>
-
-            <p>
-                The system follows three main steps.
-            </p>
-
-        </div>
-
-
-        <div class="steps">
-
-            <div class="step">
-
-                <div class="step-number">
-                    1
-                </div>
-
-                <h3>
-                    Enter News
-                </h3>
-
-                <p>
-                    Enter or paste a news article.
-                </p>
-
-            </div>
-
-
-            <div class="arrow">
-                →
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    2
-                </div>
-
-                <h3>
-                    Process Text
-                </h3>
-
-                <p>
-                    The system processes the news using NLP
-                    and TF-IDF.
-                </p>
-
-            </div>
-
-
-            <div class="arrow">
-                →
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    3
-                </div>
-
-                <h3>
-                    Predict
-                </h3>
-
-                <p>
-                    The machine learning model predicts
-                    fake or true news.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        <h3>
-            Fake News Detection
-        </h3>
+        <h2>How the System Works</h2>
 
         <p>
-            Machine Learning Based Fake News Detection System
+            The system follows a structured machine learning pipeline
+            from news input to final classification.
         </p>
 
-        <p class="copyright">
-            © 2026 Fake News Detection Project
+    </div>
+
+
+    <div class="process-grid">
+
+        <div class="process-card">
+
+            <div class="process-number">01</div>
+
+            <div class="process-icon">↓</div>
+
+            <h3>News Input</h3>
+
+            <p>
+                The user provides a news headline or article
+                through the detection interface.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <div class="process-number">02</div>
+
+            <div class="process-icon">⌕</div>
+
+            <h3>Text Processing</h3>
+
+            <p>
+                The news content is cleaned and prepared
+                for natural language processing.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <div class="process-number">03</div>
+
+            <div class="process-icon">▦</div>
+
+            <h3>TF-IDF</h3>
+
+            <p>
+                Important words and phrases are converted
+                into numerical features using TF-IDF.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <div class="process-number">04</div>
+
+            <div class="process-icon">✓</div>
+
+            <h3>Classification</h3>
+
+            <p>
+                Logistic Regression classifies the input
+                as Fake News or True News.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DATASET
+========================= -->
+<section id="dataset" class="section dataset-section">
+
+    <div class="dataset-container">
+
+        <div class="dataset-content">
+
+            <div class="section-label">
+                <span></span>
+                TRAINING DATASET
+            </div>
+
+            <h2>Built Using Real News Data</h2>
+
+            <p>
+                The model is trained using separate fake and true news
+                datasets containing news titles, article text, subjects,
+                and dates.
+            </p>
+
+            <p class="dataset-note">
+                The dataset is used for machine learning training and
+                evaluation. The model learns language patterns from
+                previously labelled examples.
+            </p>
+
+        </div>
+
+
+        <div class="dataset-cards">
+
+            <div class="dataset-card fake-dataset">
+
+                <span class="dataset-icon">!</span>
+
+                <div>
+                    <strong>23,481</strong>
+                    <span>Fake News Records</span>
+                </div>
+
+            </div>
+
+
+            <div class="dataset-card true-dataset">
+
+                <span class="dataset-icon">✓</span>
+
+                <div>
+                    <strong>21,417</strong>
+                    <span>True News Records</span>
+                </div>
+
+            </div>
+
+
+            <div class="dataset-card total-dataset">
+
+                <span class="dataset-icon">Σ</span>
+
+                <div>
+                    <strong>44,898</strong>
+                    <span>Total Records</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TECHNOLOGIES
+========================= -->
+<section class="section technology-section">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            <span></span>
+            TECHNOLOGY STACK
+        </div>
+
+        <h2>Technologies Used</h2>
+
+        <p>
+            A combination of machine learning, backend development,
+            and modern web technologies powers the system.
         </p>
 
-    </footer>
+    </div>
 
 
-    <!-- JAVASCRIPT -->
-    <script>
+    <div class="technology-grid">
 
-        async function analyzeNews() {
+        <div class="technology-item">
+            <strong>Python</strong>
+            <span>Programming</span>
+        </div>
 
-            // Get article text
-            const newsText =
-                document.getElementById("newsText").value.trim();
+        <div class="technology-item">
+            <strong>Flask</strong>
+            <span>Backend</span>
+        </div>
 
+        <div class="technology-item">
+            <strong>NLP</strong>
+            <span>Text Processing</span>
+        </div>
 
-            // Get HTML elements
-            const button =
-                document.getElementById("analyzeButton");
+        <div class="technology-item">
+            <strong>TF-IDF</strong>
+            <span>Feature Extraction</span>
+        </div>
 
-            const resultBox =
-                document.getElementById("resultBox");
+        <div class="technology-item">
+            <strong>Scikit-learn</strong>
+            <span>Machine Learning</span>
+        </div>
 
-            const resultIcon =
-                document.getElementById("resultIcon");
+        <div class="technology-item">
+            <strong>Logistic Regression</strong>
+            <span>Classification</span>
+        </div>
 
-            const resultTitle =
-                document.getElementById("resultTitle");
+        <div class="technology-item">
+            <strong>HTML / CSS</strong>
+            <span>Frontend</span>
+        </div>
 
-            const resultText =
-                document.getElementById("resultText");
+        <div class="technology-item">
+            <strong>JavaScript</strong>
+            <span>Interaction</span>
+        </div>
 
+    </div>
 
-            // Check empty article
-            if (newsText === "") {
-
-                resultBox.className =
-                    "result-box warning";
-
-                resultIcon.textContent =
-                    "!";
-
-                resultTitle.textContent =
-                    "Please Enter News";
-
-                resultText.textContent =
-                    "Please enter a news article before analyzing.";
-
-                return;
-            }
-
-
-            // Disable button
-            button.disabled = true;
-
-            button.textContent =
-                "Analyzing...";
+</section>
 
 
-            // Show loading
-            resultBox.className =
-                "result-box";
+<!-- =========================
+     ABOUT
+========================= -->
+<section id="about" class="section about-section">
 
-            resultIcon.textContent =
-                "...";
+    <div class="about-container">
 
-            resultTitle.textContent =
-                "Analyzing News";
+        <div class="about-main">
 
-            resultText.textContent =
-                "Please wait...";
+            <div class="section-label">
+                <span></span>
+                ABOUT THE PROJECT
+            </div>
+
+            <h2>Fake News Detection System</h2>
+
+            <p>
+                This academic project demonstrates how Natural Language
+                Processing and machine learning can be applied to news
+                text classification.
+            </p>
+
+            <p>
+                The system processes news content, converts text into
+                numerical features using TF-IDF, and uses a trained
+                Logistic Regression model to classify the content into
+                Fake News or True News.
+            </p>
+
+        </div>
 
 
-            try {
+        <div class="about-highlights">
 
-                /*
-                 * SEND DATA TO FLASK
-                 *
-                 * IMPORTANT:
-                 * Flask expects:
-                 *
-                 * {
-                 *     "news": "article text"
-                 * }
-                 */
+            <div class="highlight">
+                <span>01</span>
+                <div>
+                    <strong>NLP Based</strong>
+                    <p>Analyzes textual news content.</p>
+                </div>
+            </div>
 
-                const response = await fetch(
-                    "/predict",
-                    {
-                        method: "POST",
+            <div class="highlight">
+                <span>02</span>
+                <div>
+                    <strong>ML Powered</strong>
+                    <p>Uses Logistic Regression classification.</p>
+                </div>
+            </div>
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+            <div class="highlight">
+                <span>03</span>
+                <div>
+                    <strong>Web Based</strong>
+                    <p>Accessible through a Flask web interface.</p>
+                </div>
+            </div>
 
-                        body: JSON.stringify({
+        </div>
 
-                            news: newsText
+    </div>
 
-                        })
-                    }
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">✓</span>
+                <span>NewsVerify</span>
+            </a>
+
+            <p>
+                AI-powered academic Fake News Detection System
+                using Natural Language Processing and Machine Learning.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <div>
+                <strong>Navigation</strong>
+                <a href="#home">Home</a>
+                <a href="#detect">Detect News</a>
+                <a href="#how-it-works">How It Works</a>
+            </div>
+
+            <div>
+                <strong>Project</strong>
+                <a href="#dataset">Dataset</a>
+                <a href="#about">About</a>
+                <a href="#detect">Analyze</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Fake News Detection System
+        </span>
+
+        <span>
+            Academic Machine Learning Project
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+<script>
+
+    const newsText = document.getElementById("newsText");
+    const analyzeButton = document.getElementById("analyzeButton");
+    const analyzeButtonText = document.getElementById("analyzeButtonText");
+
+    const scanningBox = document.getElementById("scanningBox");
+    const scanningText = document.getElementById("scanningText");
+
+    const resultBox = document.getElementById("resultBox");
+    const resultIcon = document.getElementById("resultIcon");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultText = document.getElementById("resultText");
+
+    const confidenceValue = document.getElementById("confidenceValue");
+    const confidenceBar = document.getElementById("confidenceBar");
+
+    const characterCount = document.getElementById("characterCount");
+
+
+    /* =========================
+       CHARACTER COUNT
+    ========================= */
+
+    newsText.addEventListener("input", function () {
+
+        characterCount.textContent =
+            newsText.value.length + " characters";
+
+    });
+
+
+    /* =========================
+       ANALYZE NEWS
+    ========================= */
+
+    async function analyzeNews() {
+
+        const text = newsText.value.trim();
+
+        if (!text) {
+
+            alert("Please enter some news content first.");
+
+            newsText.focus();
+
+            return;
+        }
+
+
+        /* Reset previous result */
+
+        resultBox.classList.remove(
+            "show",
+            "result-fake",
+            "result-true",
+            "result-error"
+        );
+
+
+        /* Disable button */
+
+        analyzeButton.disabled = true;
+
+        analyzeButtonText.textContent = "Analyzing...";
+
+
+        /* Show scanning animation */
+
+        scanningBox.classList.add("show");
+
+
+        const scanningMessages = [
+            "Processing article content",
+            "Extracting important text features",
+            "Running TF-IDF analysis",
+            "Applying machine learning model",
+            "Preparing classification result"
+        ];
+
+
+        let messageIndex = 0;
+
+        const scanningInterval = setInterval(function () {
+
+            scanningText.textContent =
+                scanningMessages[messageIndex];
+
+            messageIndex =
+                (messageIndex + 1) % scanningMessages.length;
+
+        }, 650);
+
+
+        try {
+
+            /* =========================
+               SEND DATA TO FLASK
+            ========================= */
+
+            const response = await fetch("/predict", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    news: text
+                })
+
+            });
+
+
+            const data = await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error || "Prediction failed."
                 );
 
-
-                /*
-                 * GET FLASK RESPONSE
-                 */
-
-                const data =
-                    await response.json();
+            }
 
 
-                /*
-                 * CHECK SERVER ERROR
-                 */
+            /* Stop scanning */
 
-                if (!response.ok) {
+            clearInterval(scanningInterval);
 
-                    throw new Error(
-                        data.message ||
-                        "Prediction failed."
-                    );
-
-                }
+            scanningBox.classList.remove("show");
 
 
-                /*
-                 * GET RESULT
-                 *
-                 * Flask returns:
-                 *
-                 * data.result
-                 * data.confidence
-                 */
+            /* =========================
+               PREDICTION
+            ========================= */
 
-                const prediction =
-                    data.result;
+            const prediction =
+                String(data.result || "").trim();
 
-                const confidence =
-                    data.confidence;
+            const isFake =
+                prediction === "FAKE NEWS" ||
+                prediction === "Fake News" ||
+                prediction === "FAKE";
 
 
-                /*
-                 * SHOW FAKE NEWS
-                 */
+            /* =========================
+               CONFIDENCE
+            ========================= */
 
-                if (
-                    prediction === "FAKE NEWS" ||
-                    prediction === "Fake News" ||
-                    prediction === "FAKE"
-                ) {
-
-                    resultBox.className =
-                        "result-box warning";
-
-                    resultIcon.textContent =
-                        "!";
-
-                }
+            let confidence =
+                parseFloat(data.confidence);
 
 
-                /*
-                 * SHOW TRUE NEWS
-                 */
-
-                else {
-
-                    resultBox.className =
-                        "result-box";
-
-                    resultIcon.textContent =
-                        "✓";
-
-                }
+            if (Number.isNaN(confidence)) {
+                confidence = 0;
+            }
 
 
-                /*
-                 * DISPLAY RESULT
-                 */
+            confidence =
+                Math.max(0, Math.min(100, confidence));
+
+
+            /* =========================
+               RESULT DISPLAY
+            ========================= */
+
+            if (isFake) {
+
+                resultBox.classList.add("show", "result-fake");
+
+                resultIcon.textContent = "!";
 
                 resultTitle.textContent =
-                    prediction;
-
-
-                /*
-                 * DISPLAY CONFIDENCE
-                 */
+                    "FAKE NEWS";
 
                 resultText.textContent =
-                    "Confidence: " +
-                    confidence +
-                    "%";
+                    "The trained machine learning model classified this news content as Fake News.";
 
-            }
+            } else {
 
+                resultBox.classList.add("show", "result-true");
 
-            /*
-             * CONNECTION ERROR
-             */
-
-            catch (error) {
-
-                console.error(error);
-
-                resultBox.className =
-                    "result-box warning";
-
-                resultIcon.textContent =
-                    "!";
+                resultIcon.textContent = "✓";
 
                 resultTitle.textContent =
-                    "Connection Error";
+                    "TRUE NEWS";
 
                 resultText.textContent =
-                    "Prediction failed. " +
-                    error.message;
+                    "The trained machine learning model classified this news content as True News.";
 
             }
 
 
-            /*
-             * ENABLE BUTTON AGAIN
-             */
+            /* Display confidence */
 
-            finally {
+            confidenceValue.textContent =
+                confidence.toFixed(2) + "%";
 
-                button.disabled = false;
 
-                button.textContent =
-                    "Analyze News";
+            /* Animate confidence bar */
 
-            }
+            confidenceBar.style.width = "0%";
+
+            setTimeout(function () {
+
+                confidenceBar.style.width =
+                    confidence + "%";
+
+            }, 100);
+
+
+        } catch (error) {
+
+            clearInterval(scanningInterval);
+
+            scanningBox.classList.remove("show");
+
+
+            resultBox.classList.add(
+                "show",
+                "result-error"
+            );
+
+            resultIcon.textContent = "!";
+
+            resultTitle.textContent =
+                "Analysis Error";
+
+            resultText.textContent =
+                error.message ||
+                "Unable to connect to the prediction service.";
+
+            confidenceValue.textContent = "—";
+
+            confidenceBar.style.width = "0%";
 
         }
 
-    </script>
 
+        /* Enable button */
+
+        analyzeButton.disabled = false;
+
+        analyzeButtonText.textContent =
+            "Analyze Again";
+
+    }
+
+
+    /* =========================
+       CLEAR ANALYSIS
+    ========================= */
+
+    function clearAnalysis() {
+
+        newsText.value = "";
+
+        characterCount.textContent =
+            "0 characters";
+
+
+        resultBox.classList.remove(
+            "show",
+            "result-fake",
+            "result-true",
+            "result-error"
+        );
+
+
+        scanningBox.classList.remove("show");
+
+
+        confidenceValue.textContent =
+            "0%";
+
+        confidenceBar.style.width =
+            "0%";
+
+
+        analyzeButton.disabled = false;
+
+        analyzeButtonText.textContent =
+            "Analyze News";
+
+
+        newsText.focus();
+
+    }
+
+
+    /* =========================
+       NAVBAR SCROLL EFFECT
+    ========================= */
+
+    window.addEventListener("scroll", function () {
+
+        const navbar =
+            document.querySelector(".navbar");
+
+        if (window.scrollY > 20) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+
+        }
+
+    });
+
+</script>
+<script>
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 150) {
+            current = section.id;
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + current
+        );
+    });
+});
+</script>
 </body>
-
 </html>

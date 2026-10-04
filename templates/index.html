@@ -857,7 +857,7 @@
             if (!response.ok) {
 
                 throw new Error(
-                    data.error || "Prediction failed."
+                    data.message || data.error || "Prediction failed."
                 );
 
             }
